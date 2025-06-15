@@ -1,0 +1,12 @@
+# Playwright
+
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+# Project specific
+
+cucumber-report.html
+cucumber-report.json

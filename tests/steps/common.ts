@@ -7,7 +7,7 @@ import { userProfilePage } from './world';
  */
 
 Given(/^my browser reported location is within the EU$/, async function () {
-    page.context().setGeolocation({
+    await page.context().setGeolocation({
         latitude: 47.4813,
         longitude: 19.0479036
     });
@@ -20,7 +20,7 @@ Given(/^I am a visitor who just landed on the User Profile Creation page for the
         window.localStorage.clear();
         window.sessionStorage.clear();
     });
-    page.context().clearCookies();
+    await page.context().clearCookies();
 
     await userProfilePage.reload();
 });

@@ -18,3 +18,8 @@ export enum Element {
     UPC_GITHUB,
     UPC_SUBMIT
 }
+
+export function getElementByName(name: string): Element | undefined {
+  if (name in Element) return Element[name as keyof typeof Element];
+  return undefined;
+}

@@ -1,4 +1,4 @@
-import { AfterAll, BeforeAll, setDefaultTimeout } from '@cucumber/cucumber';
+import { Before, After, setDefaultTimeout } from '@cucumber/cucumber';
 import { Browser, BrowserContext, chromium, Page } from 'playwright';
 import { UserProfileCreationPage } from '../pages/UserProfileCreationPage';
 
@@ -12,11 +12,12 @@ let userProfilePage: UserProfileCreationPage;
 
 setDefaultTimeout(15 * 1000);
 
-BeforeAll (async () => {
-    //if (browser !== undefined) return page;
+Before (async () => {
+    // if (browser !== undefined) return page;
 
     try {
-        if (browser === undefined) browser = await chromium.launch({headless: false});
+        browser = await chromium.launch({headless: false});
+        //if (browser === undefined) browser = await chromium.launch({headless: false});
         context = await browser.newContext();
         page = await context.newPage();
         await page.goto('about:blank');
@@ -28,11 +29,13 @@ BeforeAll (async () => {
         console.error(navigationErrorMessage);
         throw new Error(navigationErrorMessage);
     }
-    return page;
+    //return page;
 });
 
-AfterAll (async () => {
-    await browser.close();
+After (async () => {
+    //await browser.close();
+    //await context.close();
+    //await browser.close();
 });
 
 export {

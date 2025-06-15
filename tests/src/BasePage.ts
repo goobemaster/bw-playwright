@@ -3,7 +3,6 @@ import { Element } from './Element';
 import { baseUrl } from '../steps/world'; 
 
 export abstract class BasePage {
-    //protected static instance: BasePage; // must be public
     protected readonly context: BrowserContext;
     protected readonly page: Page;
 
@@ -19,12 +18,6 @@ export abstract class BasePage {
         this.elements = {};
     }
 
-    // public static getInstance(): BasePage {
-    //     if (!this.instance) this.instance = new (<any>this.constructor);
-
-    //     return this.instance;
-    // }
-
     public async getBrowserTitle(): Promise<String> {
         return this.page.title();
     }
@@ -37,13 +30,17 @@ export abstract class BasePage {
         await this.page.reload();
     }
 
+    public isElementDefined(key: Element): boolean {
+        return Object.hasOwn(this.elements, key);
+    }
+
     public async getElement(key: Element): Promise<undefined|Locator> {
-        if (!Object.hasOwn(this.elements, key)) return undefined;
+        if (!this.isElementDefined(key)) return undefined;
 
         try {
             let element = this.elements[key];
             await element?.waitFor();
-            if (!element?.isVisible) element?.scrollIntoViewIfNeeded();
+            if (!element?.isVisible()) await element?.scrollIntoViewIfNeeded();
             return element;
         } catch (error) {
             return undefined;

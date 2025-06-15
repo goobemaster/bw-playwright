@@ -109,7 +109,8 @@ The third report is the "./cucumber-report.json" file, which may be used for pro
 - [Playwright Docs](https://playwright.dev/docs/test-assertions)
 - [Cucumber Reference](https://cucumber.io/docs/cucumber/api)
 - [NPM packages](https://www.npmjs.com/)
-- [Integrating Cucumber with Playwright](https://www.browserstack.com/guide/playwright-cucumber)
+- [Playwright Cucumber Basic Setup](https://dev.to/akdevcraft/playwright-and-cucumber-are-the-best-tools-for-end-to-end-testing-a28)
+- [Playwright Cucumber Guide](https://www.browserstack.com/guide/playwright-cucumber)
 - [Playwright waiting for load state](https://webscrapingsite.com/blog/how-to-wait-for-page-to-fully-load-in-playwright/)
 
 🔝 [Jump to Contents](#contents)

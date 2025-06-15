@@ -1,9 +1,8 @@
 import { BasePage } from '../src/BasePage';
-import { Element } from '../src/Element';
-import { Page, BrowserContext } from 'playwright';
+import { Element, getElementByName } from '../src/Element';
+import { Page, BrowserContext, Locator } from 'playwright';
 
 export class UserProfileCreationPage extends BasePage {
-    //protected static instance = new UserProfileCreationPage();
     public openUrl: string = '';
     public landUrl: RegExp = /^$/;
 
@@ -46,13 +45,14 @@ export class UserProfileCreationPage extends BasePage {
         return form !== undefined;
     }
 
-    // public async isRedirectBannerDisplayed(): Promise<boolean> {
-    //     let banner = await this.getElement(Element.REDIRECT_BANNER);
-    //     return banner === undefined ? false : banner.isVisible();
-    // }
-
-    // public async isRedirectBannerLinkUrl(urlPartial: string): Promise<boolean> {
-    //     let banner = await this.getElement(Element.REDIRECT_BANNER);
-    //     return banner !== undefined && await banner.locator(`a[href*="${urlPartial}"]`).isVisible();
-    // }
+    public async getFormFieldElement(fieldName: String): Promise<undefined|Locator> {
+        let fieldNameElementKey = `UPC_` + fieldName.toUpperCase().replaceAll(' ', '_');
+        let fieldNameElement: Element|undefined = getElementByName(fieldNameElementKey) as Element;
+        if (fieldNameElement === undefined) {
+            console.error(fieldName + ' is an undefined form element!');
+            return undefined;
+        }
+ 
+        return await this.getElement(fieldNameElement);
+    }
 }

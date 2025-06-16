@@ -10,6 +10,9 @@
 - [Improvement Ideas](#improvement-ideas)
 - [Useful Links](#useful-links)
 
+📖 Go to [Test Report](./doc/test-report.md)
+📖 Go to [Questionnaire](./doc/questionnaire.md)
+
 **Brief**
 
 This project contains a possible solution to "qa-expert-task-3" practical challenge.

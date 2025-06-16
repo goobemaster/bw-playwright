@@ -5,7 +5,9 @@
 - [How-To](#how-to)
   - [First Time Setup](#first-time-setup)
   - [Run Tests](#run-tests)
-- [Reports](#reports)
+    - [Environment Variables](#environment-variables)
+- [Reporting](#reporting)
+- [Improvement Ideas](#improvement-ideas)
 - [Useful Links](#useful-links)
 
 **Brief**
@@ -23,6 +25,8 @@ The project was set up the following way:
 - Addition of customizations (to increase productivity):
   - Page Object Model implementation
   - Test Data management
+
+**For the purposes of the challenge find the [actual test report here](./doc/test-report.md).**
 
 ## How-To
 
@@ -58,9 +62,11 @@ _Alternatively:_ Initialize an empty repository, then add the remote origin.
 
 2. Install dependencies
 
+To successfully install all dependencies (--with-deps) super user access is required, as it involves installing system packages.
+
 ````bash
 npm install
-npx playwright install
+npx playwright install --with-deps
 ````
 
 **IDE**
@@ -86,9 +92,23 @@ cd ~/workspace/bw-playwright
 ./test-run-all.sh
 ````
 
+#### Environment Variables
+
+A set of environment variables inside the included test runner script are used as settings:
+
+| Name                  | Description                                                                | Options                           |
+|-----------------------|----------------------------------------------------------------------------|-----------------------------------|
+| **BROWSER**           | Tests will execute on this browser.                                        | "chromium" *, "firefox", "webkit" |
+| **BROWSER_HEADLESS**  | The browser will run entirely in memory, without bringing up a GUI.        | "true", "false" *                 |
+| **BROWSER_AUTOCLOSE** | If set to true, the browser will be closed when end of testing is reached. | "true", "false" *                 |
+
+Environment variables are optional. If ommitted the default value will be used.
+
+_* - marks default option_
+
 🔝 [Jump to Contents](#contents)
 
-## Reports
+## Reporting
 
 Each test run generates three kind of reports. One is a quick summary in the terminal, which includes test failures and errors if any. 100% pass results in a very brief output:
 
@@ -104,9 +124,18 @@ The third report is the "./cucumber-report.json" file, which may be used for pro
 
 🔝 [Jump to Contents](#contents)
 
+## Improvement Ideas
+
+List of "If I had infinite time available" items:
+
+- Environment variables could be moved to a .env file (experimental support in node 20+)
+- The element register (locators) inside pages should be more robust.
+- The cucumber After hook is flaky sometimes. This should be investigated.
+
 ## Useful Links
 
 - [Playwright Docs](https://playwright.dev/docs/test-assertions)
+- [Playwright API](https://playwright.dev/docs/api/class-browser)
 - [Cucumber Reference](https://cucumber.io/docs/cucumber/api)
 - [NPM packages](https://www.npmjs.com/)
 - [Playwright Cucumber Basic Setup](https://dev.to/akdevcraft/playwright-and-cucumber-are-the-best-tools-for-end-to-end-testing-a28)

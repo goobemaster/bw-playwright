@@ -53,7 +53,7 @@ _All assumptions must be aligned on with the product owner, and tests shall be a
 | LinkedIn field should be optional                 | -Manual exploratory-                                   | High     | The form cannot be submitted with empty LinkedIn field, however the field shall be optional                     |
 | Submit redirects to a url with exposed input data | -Manual exploratory-                                   | Critical | All user input (including password) is exposed as path parameters upon successful form submission               |
 | "Non-binary" gender option is missing             | -Manual exploratory-                                   | Medium   | This radio option is completely missing. Marked as medium, as the form may still be usable.                     |
-| Date of Birth field format is incorrect           | Form is submitted complete with expected field values  | Medium   | Expected: YYYY-MM-DD, Actual: MM/DD/YYYY. Marked as medium, as the form may still be usable.                    |                     
+| Date of Birth field format is incorrect           | Form is submitted complete with expected field values  | Medium   | Expected: YYYY-MM-DD, Actual: MM/DD/YYYY. Marked as medium, as the form may still be usable.                    |
 
 📖 [Go to the Scenarios with steps](../tests/features/user_profile_creation_visitor_smoke.feature)
 

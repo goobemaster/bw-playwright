@@ -1,6 +1,7 @@
 import { Then, DataTable } from '@cucumber/cucumber';
 import { userProfilePage } from './world';
 import { expect, Locator } from '@playwright/test';
+import { UserProfileDataScenario } from '../data/UserProfileData';
 
 Then(/^the page title is: (.+)$/, async function (expectedPageTitle: string) {
     expect(await userProfilePage.getPageTitle()).toEqual(expectedPageTitle);
@@ -47,4 +48,24 @@ Then(/^the form features relevant labels for each field:$/, async function (expe
         let actualFieldLabelText = await actualFieldLabel?.innerText();
         expect(actualFieldLabelText?.startsWith(expectedLabel)).toBe(true);
     }
+});
+
+Then(/^all form fields are filled in with correct values$/, async function () {
+    await userProfilePage.fillFormFields(UserProfileDataScenario.HAPPY);
+});
+
+Then(/^the form is submitted$/, async function () {
+    await userProfilePage.submit();
+});
+
+Then(/^the form fields are reset to empty$/, async function () {
+    expect(await userProfilePage.isFormResetToEmpty()).toBe(true);
+});
+
+Then(/^the form "(.+)" contains an incorrect value$/, async function (fieldName: string) {
+    // TODO
+});
+
+Then(/^an error popup is displayed$/, async function () {
+    // TODO
 });

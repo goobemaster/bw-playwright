@@ -46,4 +46,27 @@ Feature: First time visitor explores the User Profile Creation page
       | LinkedIn           | LinkedIn URL (optional)      |
       | Github             | GitHub URL (optional)        |
 
-  
+  Scenario: Form is submitted complete with expected field values
+    When all form fields are filled in with correct values
+    And the form is submitted
+    Then the form fields are reset to empty
+
+  # Scenario Outline: Validation error is raised when filling in incorrect field values
+  #   When the form "<field>" contains an incorrect value
+  #   And the form is submitted
+  #   Then an error popup is displayed
+
+  #   Examples:
+  #     | Field              |
+  #     #--------------------#
+  #     | First Name         |
+  #     | Last Name          |
+  #     | Email              |
+  #     | Password           |
+  #     | Confirm Password   |
+  #     | Gender             |
+  #     | Date of Birth      |
+  #     | Phone number       |
+  #     | Address            |
+  #     | LinkedIn           |
+  #     | Github             |

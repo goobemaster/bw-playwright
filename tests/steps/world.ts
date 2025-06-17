@@ -34,11 +34,16 @@ Before(async () => {
                 browser = await webkit.launch({ headless: envBrowserHeadlessBool });
                 break;
         }
-        context = await browser.newContext();
-        page = await context.newPage();
-        page.once('load', (page: Page) => {
-            console.log(`Page load occured! URL: ${page.url}, Title: ${page.title}`);
+        context = await browser.newContext({
+            viewport: {
+                width: 1920,
+                height: 1080
+            }
         });
+        page = await context.newPage();
+        // page.once('load', (pageLoaded: Page) => {
+        //     console.log(`Page load occured! URL: ${pageLoaded.url()}, Title: ${pageLoaded.title()}`);
+        // });
         await page.goto('about:blank');
 
         console.log(`Started ${envBrowser} browser; headless: ${envBrowserHeadless}`);
@@ -58,7 +63,11 @@ After(async () => {
     if (browser.isConnected()) await browser.close();
 });
 
+function delay(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 export {
-    browser, context, page, baseUrl,
+    browser, context, page, baseUrl, delay,
     userProfilePage
 };

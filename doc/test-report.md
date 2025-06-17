@@ -44,14 +44,16 @@ _All assumptions must be aligned on with the product owner, and tests shall be a
 
 # Bugs
 
-| Title                                             | Scenario Name        | Severity | Description/Comments                                                                                            |
-|---------------------------------------------------|----------------------|----------|-----------------------------------------------------------------------------------------------------------------|
-| Admin password exposed in HTML source             | -Manual exploratory- | Critical | Checkup of hidden elements and critical variables in templates recommended, to see if there are similar issues. |
-| Typo in label of Address field                    | -Manual exploratory- | Low      | optioal -> optional                                                                                             |
-| Typo in label of DOB field                        | -Manual exploratory- | Low      | Date ofBirth -> Date of Birth                                                                                   |
-| Confirm password field is in plain text           | -Manual exploratory- | Critical | Password fields must always be masked for security reasons, to protect users from social engineering, etc.      |
-| LinkedIn field should be optional                 | -Manual exploratory- | High     | The form cannot be submitted with empty LinkedIn field, however the field shall be optional                     |
-| Submit redirects to a url with exposed input data | -Manual exploratory- | Critical | All user input (including password) is exposed as path parameters upon successful form submission               |
+| Title                                             | Scenario Name                                          | Severity | Description/Comments                                                                                            |
+|---------------------------------------------------|--------------------------------------------------------|----------|-----------------------------------------------------------------------------------------------------------------|
+| Admin password exposed in HTML source             | -Manual exploratory-                                   | Critical | Checkup of hidden elements and critical variables in templates recommended, to see if there are similar issues. |
+| Typo in label of Address field                    | Relevant and typo free form field labels are displayed | Low      | optioal -> optional                                                                                             |
+| Typo in label of DOB field                        | Relevant and typo free form field labels are displayed | Low      | Date ofBirth -> Date of Birth                                                                                   |
+| Confirm password field is in plain text           | Correct form fields are displayed                      | Critical | Password fields must always be masked for security reasons, to protect users from social engineering, etc.      |
+| LinkedIn field should be optional                 | -Manual exploratory-                                   | High     | The form cannot be submitted with empty LinkedIn field, however the field shall be optional                     |
+| Submit redirects to a url with exposed input data | -Manual exploratory-                                   | Critical | All user input (including password) is exposed as path parameters upon successful form submission               |
+| "Non-binary" gender option is missing             | -Manual exploratory-                                   | Medium   | This radio option is completely missing. Marked as medium, as the form may still be usable.                     |
+| Date of Birth field format is incorrect           | Form is submitted complete with expected field values  | Medium   | Expected: YYYY-MM-DD, Actual: MM/DD/YYYY. Marked as medium, as the form may still be usable.                    |                     
 
 📖 [Go to the Scenarios with steps](../tests/features/user_profile_creation_visitor_smoke.feature)
 

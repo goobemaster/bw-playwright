@@ -11,6 +11,7 @@
 - [Useful Links](#useful-links)
 
 📖 Go to [Test Report](./doc/test-report.md)
+
 📖 Go to [Questionnaire](./doc/questionnaire.md)
 
 **Brief**
@@ -133,7 +134,10 @@ List of "If I had infinite time available" items:
 
 - Environment variables could be moved to a .env file (experimental support in node 20+)
 - The element register (locators) inside pages should be more robust.
+  - I realized midway that with my initial strategy, steps cannot benefit from expect(locator) type of expectations.
 - The cucumber After hook is flaky sometimes. This should be investigated.
+- Test data management: something more predictable, pattern like.
+- More automation coverage! Unfortunately I did not have enough time to tackle the field-by-field validation scenario with example table. Obviously a complete solution would include more than one validation check for each field.
 
 ## Useful Links
 

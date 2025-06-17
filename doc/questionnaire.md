@@ -38,6 +38,8 @@ To use the company specific testing framework in a CI/CD pipeline the framework 
 
 As for maintainability: KISS - but with elegance.
 
+Please do take a look at this core of a [test framework in Java](https://github.com/goobemaster/java-test-framework) previously written by me.
+
 ## Question 3.
 
 > _You discover that a critical production bug has escaped despite thorough testing. How would you approach analyzing the root cause, preventing recurrence, and improving the overall QA process?_

@@ -1,6 +1,8 @@
 import { BasePage } from '../src/BasePage';
 import { Element, getElementByName } from '../src/Element';
 import { Page, BrowserContext, Locator } from 'playwright';
+import { UserProfileDataScenario, UserProfileData } from '../data/UserProfileData';
+import { delay } from '../steps/world';
 
 export class UserProfileCreationPage extends BasePage {
     public openUrl: string = '';
@@ -80,7 +82,52 @@ export class UserProfileCreationPage extends BasePage {
     }
 
     public async getNumberOfInputs(): Promise<Number> {
-        let inputs = await this.page.locator('input').all();
+        let inputs = await this.page.locator('input:not([type=submit])').all();
         return inputs.length;
+    }
+
+    public async submit() {
+        let submit = await this.getElement(Element.UPC_SUBMIT);
+        submit?.click();
+    }
+
+    public async isFormResetToEmpty(): Promise<Boolean> {
+        let allInputFields = await this.page.locator('input').all();
+        let emptyFields = 0;
+
+        for (const inputField of allInputFields) {
+            if ((await inputField.inputValue()).length == 0) emptyFields++;
+        }
+
+        return emptyFields == allInputFields.length;
+    }
+
+    public async fillFormFields(scenario: UserProfileDataScenario) {
+        const data = new UserProfileData(scenario);
+
+        (await this.getElement(Element.UPC_FIRST_NAME))?.fill(data.getFirstName());
+        (await this.getElement(Element.UPC_LAST_NAME))?.fill(data.getLastName());
+        (await this.getElement(Element.UPC_EMAIL))?.fill(data.getEmail());
+        (await this.getElement(Element.UPC_PASSWORD))?.fill(data.getPassword());
+        (await this.getElement(Element.UPC_CONFIRM_PASSWORD))?.fill(data.getConfirmPassword());
+        (await this.getElement(Element.UPC_PHONE_NUMBER))?.fill(data.getPhone());
+        (await this.getElement(Element.UPC_ADDRESS))?.fill(data.getAddress());
+        (await this.getElement(Element.UPC_LINKEDIN))?.fill(data.getLinkedin());
+        (await this.getElement(Element.UPC_GITHUB))?.fill(data.getGithub());
+
+        let dobDate = data.getDob();
+        let dobText = dobDate.getUTCFullYear().toString() + '-' + dobDate.getUTCMonth().toString() + '-' + dobDate.getUTCDate().toString();
+        (await this.getElement(Element.UPC_DATE_OF_BIRTH))?.fill(dobText);
+
+        switch (data.getGender()) {
+            case 'male':
+                (await this.getElement(Element.UPC_GENDER_MALE))?.click();                
+                break;
+            case 'female':
+                (await this.getElement(Element.UPC_GENDER_FEMALE))?.click();                
+                break;
+            default:
+                (await this.getElement(Element.UPC_GENDER_UNDISCLOSED))?.click();
+        }
     }
 }
